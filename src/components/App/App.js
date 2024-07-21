@@ -6,13 +6,14 @@ import SearchBar from "../SearchBar/SearchBar";
 import { Spotify } from "../../util/Spotify/Spotify";
 function App() {
   const [searchResults, setSearchResults] = useState([]);
-  const [playlistName, setPlaylistName] = useState("defaultName");
+  const [playlistName, setPlaylistName] = useState("Example Playlist Name");
   const [playlistTracks, setPlaylistTracks] = useState([]);
   function addTrack(track) {
     const isInPlaylist = playlistTracks.find((t) => t.id === track.id);
     const newTrack = playlistTracks.concat(track);
     if (isInPlaylist) {
       console.log("Track already exists");
+      //add alert?
     } else {
       setPlaylistTracks(newTrack);
     }
@@ -47,7 +48,7 @@ function App() {
   return (
     <div>
       <h1>
-        Ja<span className={styles.highlight}>mmm</span>ing
+        Ja<span className={styles.highlight}>dd</span>is
       </h1>
       <div className={styles.App}>
         <SearchBar onSearch={search} />

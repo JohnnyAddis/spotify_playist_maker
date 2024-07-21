@@ -11,6 +11,7 @@ function SearchBar(props) {
   return (
     <div className={styles.SearchBar}>
       <input
+        //name= 'SEARCH'
         placeholder="Enter A Song, Album, or Artist"
         onChange={handleTermChange}
       />
