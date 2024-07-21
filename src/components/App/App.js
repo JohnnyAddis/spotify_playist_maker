@@ -5,35 +5,9 @@ import Playlist from "../Playlist/Playlist";
 import SearchBar from "../SearchBar/SearchBar";
 import { Spotify } from "../../util/Spotify/Spotify";
 function App() {
-  const [searchResults, setSearchResults] = useState([
-    {
-      name: "mock1",
-      artist: "artist1",
-      album: "album1",
-      id: 1,
-    },
-    {
-      name: "mock2",
-      artist: "artist2",
-      album: "album2",
-      id: 2,
-    },
-  ]);
+  const [searchResults, setSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState("defaultName");
-  const [playlistTracks, setPlaylistTracks] = useState([
-    {
-      name: "exampleName1",
-      artist: "playlistartist1",
-      album: "playlistAlbum1",
-      id: 3,
-    },
-    {
-      name: "playlistName2",
-      artist: "playlistartiest2",
-      album: "playlitalbum2",
-      id: 4,
-    },
-  ]);
+  const [playlistTracks, setPlaylistTracks] = useState([]);
   function addTrack(track) {
     const isInPlaylist = playlistTracks.find((t) => t.id === track.id);
     const newTrack = playlistTracks.concat(track);
