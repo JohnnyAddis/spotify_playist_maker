@@ -4,7 +4,7 @@ import Tracklist from "../Tracklist/Tracklist";
 function SearchResults (props) {
     return (
         <div className={styles.SearchResults}>
-        <Tracklist userSearchResults = {props.userSearchResults} />
+        <Tracklist userSearchResults = {props.userSearchResults} isRemoval = {props.isRemoval} onAdd = {props.onAdd} onRemove = {props.onRemove} />
       </div>
         );
 }
