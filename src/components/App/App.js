@@ -67,7 +67,7 @@ function App() {
       </h1>
       <div className={styles.App}>
         {/* <!-- Add a SearchBar component --> */}
-        <SearchBar />
+        <SearchBar onSearch = {search}/>
         <div className={styles["App-playlist"]}>
           <SearchResults userSearchResults={searchResults} onAdd={addTrack} />
           <Playlist
