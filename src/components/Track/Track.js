@@ -1,16 +1,6 @@
 import React from "react";
 import styles from "./Track.module.css";
 function Track(props) {
-  
-
-  function passTrack() {
-    props.onAdd(props.track);
-  }
-
-  function passTrackToRemove(){
-    props.onRemove(props.track);
-  }
-
   function renderAction() {
     if (props.isRemoval) {
       return (
@@ -26,6 +16,16 @@ function Track(props) {
       );
     }
   }
+
+  function passTrack() {
+    props.onAdd(props.track);
+  }
+
+  function passTrackToRemove(){
+    props.onRemove(props.track);
+  }
+
+
   return (
     <div className={styles.Track}>
       <div className={styles["Track-information"]}>
