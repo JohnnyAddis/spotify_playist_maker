@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
 import Track from "../Track/Track";
-
+import SearchBar from '../SearchBar/SearchBar';
 function App() {
   const [searchResults, setSearchResults] = useState([
     {
@@ -56,6 +56,10 @@ function App() {
   function savePlaylist(){
     const trackURIs = playlistTracks.map((t)=>t.uri);
   }
+
+  function search(term){
+    console.log(term);
+  }
   return (
     <div>
       <h1>
@@ -63,7 +67,7 @@ function App() {
       </h1>
       <div className={styles.App}>
         {/* <!-- Add a SearchBar component --> */}
-
+        <SearchBar />
         <div className={styles["App-playlist"]}>
           <SearchResults userSearchResults={searchResults} onAdd={addTrack} />
           <Playlist
