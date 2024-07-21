@@ -4,7 +4,6 @@ const redirectUrl = "http://localhost:3000";
 
 const Spotify = {
   getAccessToken() {
-    
     if (accessToken) return accessToken;
     const tokenInURL = window.location.href.match(/access_token=([^&]*)/);
     const expiryTime = window.location.href.match(/expires_in=([^&]*)/);
@@ -38,8 +37,37 @@ const Spotify = {
           name: t.name,
           artist: t.artists[0].name, //just the first artist in the returned array
           album: t.album.name,
-          uri: t.uri
+          uri: t.uri,
         }));
+      });
+  },
+  savePlaylist(name, trackUris) {
+    if (!name || !trackUris) return;
+
+    const aToken = Spotify.getAccessToken();
+    const header = { Authorization: `Bearer ${aToken}` };
+    let userId;
+
+    return fetch(`https://api.spotify.com/v1/me`, { headers: header })
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        userId = jsonResponse.id;
+        
+        let playlistId;
+        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+          headers: header,
+          method: "post",
+          body: JSON.stringify({ name: name }),
+        })
+          .then((response) => response.json())
+          .then((jsonResponse) => {
+            playlistId = jsonResponse.id;
+            return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,{
+                headers: header,
+                method: 'post',
+                body: JSON.stringify({ uris: trackUris})
+            })
+          });
       });
   },
 };
