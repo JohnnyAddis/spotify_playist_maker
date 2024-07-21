@@ -1,13 +1,16 @@
 import React from "react";
 import styles from './Tracklist.module.css';
-
-function Tracklist () {
+import Track from '../Track/Track';
+function Tracklist (props) {
     return (
         <div className={styles.Tracklist}>
-        {/* <!-- You will add a map method that renders a set of Track components  --> */}    
-        <li>track 1</li>
-        <li>track 2</li>
-        <li>track 3</li>
+        {/* <!-- You will add a map method that renders a set of Track components  --> */} 
+        {props.userSearchResults.map((track)=>(
+          <Track track = {track} key = {track.id} />
+        ))}
+          
+        
+        
       </div>
       
     );
