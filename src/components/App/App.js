@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styles from "./App.module.css";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
-import Track from "../Track/Track";
-import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from "../SearchBar/SearchBar";
+import {Spotify} from "../../util/Spotify/Spotify";
 function App() {
   const [searchResults, setSearchResults] = useState([
     {
@@ -44,20 +44,21 @@ function App() {
     }
   }
 
-  function removeTrack(track){
-    const existing = playlistTracks.filter((t)=> t.id !==track.id);
+  function removeTrack(track) {
+    const existing = playlistTracks.filter((t) => t.id !== track.id);
     setPlaylistTracks(existing);
   }
 
-  function updatePlaylistName(name){
+  function updatePlaylistName(name) {
     setPlaylistName(name);
   }
 
-  function savePlaylist(){
-    const trackURIs = playlistTracks.map((t)=>t.uri);
+  function savePlaylist() {
+    const trackURIs = playlistTracks.map((t) => t.uri);
   }
 
-  function search(term){
+  function search(term) {
+    Spotify.search(term).then(result => setSearchResults(result));
     console.log(term);
   }
   return (
@@ -67,15 +68,15 @@ function App() {
       </h1>
       <div className={styles.App}>
         {/* <!-- Add a SearchBar component --> */}
-        <SearchBar onSearch = {search}/>
+        <SearchBar onSearch={search} />
         <div className={styles["App-playlist"]}>
           <SearchResults userSearchResults={searchResults} onAdd={addTrack} />
           <Playlist
             playlistName={playlistName}
             playlistTracks={playlistTracks}
-            onRemove = {removeTrack}
-            onNameChange = {updatePlaylistName}
-            onSave = {savePlaylist}
+            onRemove={removeTrack}
+            onNameChange={updatePlaylistName}
+            onSave={savePlaylist}
           />
         </div>
       </div>
