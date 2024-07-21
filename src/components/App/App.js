@@ -62,6 +62,11 @@ function App() {
   }
 
   function search(term) {
+    //handling empty search case (could clear serach results?)
+    if(!term){
+      setSearchResults([]);
+      return;
+    }
     Spotify.search(term).then((result) => setSearchResults(result));
     console.log(term);
   }
